@@ -150,9 +150,13 @@
     <ClInclude Include="AudioFrame.hpp" />
     <ClInclude Include="AudioInfo.hpp" />
     <ClInclude Include="AudioLoader.hpp" />
+    <ClInclude Include="AudioPreprocessor.hpp" />
     <ClInclude Include="DFT.hpp" />
     <ClInclude Include="Gnuplot.hpp" />
     <ClInclude Include="LinSpace.hpp" />
+    <ClInclude Include="Note.hpp" />
+    <ClInclude Include="NoteGenerator.hpp" />
+    <ClInclude Include="Point.hpp" />
     <ClInclude Include="ProgressBar.hpp" />
     <ClInclude Include="WindowTransforms\GaussWindowTransform.hpp" />
     <ClInclude Include="WindowTransforms\IWindowTransform.hpp" />

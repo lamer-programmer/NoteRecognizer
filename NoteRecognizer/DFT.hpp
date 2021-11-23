@@ -11,6 +11,27 @@ namespace NoteRecognizer
 {
 	class DFT
 	{
+	public:
+		template <std::floating_point T>
+		[[nodiscard]]
+		static std::valarray<std::complex<T>> ComputeForward(const std::valarray<T> & arr)
+		{
+			int n = arr.size();
+			if (std::log2(n) == static_cast<int>(std::log2(n)))
+			{
+				std::valarray<std::complex<T>> answer(n);
+				for (auto i = 0; i < n; i++)
+				{
+					answer[i] = { arr[i], 0 };
+				}
+
+				ComputeFFT(answer);
+				return answer;
+			}
+			
+			return ComputeDFT(arr);
+		}
+
 	private:
 		template <typename T>
 		[[nodiscard]]
@@ -68,27 +89,6 @@ namespace NoteRecognizer
 			}
 
 			return output;
-		}
-
-	public:
-		template <std::floating_point T>
-		[[nodiscard]]
-		static std::valarray<std::complex<T>> ComputeForward(const std::valarray<T> & arr)
-		{
-			int n = arr.size();
-			if (std::log2(n) == static_cast<int>(std::log2(n)))
-			{
-				std::valarray<std::complex<T>> answer(n);
-				for (auto i = 0; i < n; i++)
-				{
-					answer[i] = { arr[i], 0 };
-				}
-
-				ComputeFFT(answer);
-				return answer;
-			}
-			
-			return ComputeDFT(arr);
 		}
 	};
 }
