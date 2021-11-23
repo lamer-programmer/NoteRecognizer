@@ -6,9 +6,9 @@
 #include <numbers>
 #include <vector>
 
+
 namespace NoteRecognizer
 {
-
 	class DFT
 	{
 	private:

@@ -3,7 +3,7 @@
 #include <valarray>
 
 
-namespace NoteAnalyzer
+namespace NoteRecognizer
 {
 	template <std::floating_point T>
 	class IWindowTransform
