@@ -22,6 +22,11 @@ namespace NoteRecognizer
 
 		auto operator<=>(const Note & otherNote) const = default;
 
+		int GetNumber() const
+		{
+			return noteNumber;
+		}
+
 	private:
 		int noteNumber;
 	};

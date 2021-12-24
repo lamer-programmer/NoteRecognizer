@@ -19,7 +19,7 @@ namespace NoteRecognizer
 			std::set<Note> notes;
 			for (const auto & pick : picks)
 			{
-				auto noteNumber = 12 * std::round(std::log2(pick.X / firstNoteFrequency));
+				auto noteNumber = std::round(12 * std::log2(pick.X / firstNoteFrequency));
 				notes.emplace(noteNumber);
 			}
 

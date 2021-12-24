@@ -1,6 +1,7 @@
 #include <iostream>
 #include <functional>
 #include <filesystem>
+#include <fstream>
 
 #include "DFT.hpp"
 #include "AudioLoader.hpp"
@@ -32,20 +33,53 @@ std::vector<Point<float>> GetPicks(
 	return picks;
 }
 
-
-int main()
+std::string GetPath(int argc, char ** argv)
 {
-	auto [timeline, sound, info] = AudioLoader::Load("Вторая октава.wav");
-
-	AudioFrame frame(sound, 0, 4'096);
-	for (auto i = 0; i < 70; i++)
+	std::string path;
+	for (auto i = 1; i < argc; i++)
 	{
-		frame.Shift(frame.Size());
+		if (i != 1)
+		{
+			path += " ";
+		}
+
+		path += argv[i];
 	}
 
-	auto frequencies = frame.GetFrequencies<RectangleWindowTransform>(info.GetSampleRate(), 120);
+	return path;
+}
 
-	auto picks = GetPicks(frequencies, 0.01f);
+void WriteNotesToFile(std::ofstream & notesFile, const std::set<Note> & notes)
+{
+	for (auto note : notes)
+	{
+		notesFile << note.GetNumber() << " ";
+	}
+
+	notesFile << std::endl;
+}
+
+int main(int argc, char ** argv)
+{
+	auto path = GetPath(argc, argv);
+	std::cout << std::endl << path << std::endl << argc << std::endl;
+	auto [timeline, sound, info] = AudioLoader::Load(path);
+
 	NoteGenerator noteGenerator;
-	auto notes = noteGenerator.GetNotes(picks);
+	const float pickBoundary = 0.01f;
+
+	std::ofstream notesFile("Notes.txt");
+
+	auto i = 0;
+
+	for (AudioFrame frame(sound, 0, 4'096 * 2); frame.Size() != 0; frame.Shift(frame.Size()))
+	{
+		auto frequencies
+			= frame.GetFrequencies<RectangleWindowTransform>(info.GetSampleRate(), 250);
+
+		auto picks = GetPicks(frequencies, pickBoundary);
+		auto notes = noteGenerator.GetNotes(picks);
+		WriteNotesToFile(notesFile, notes);
+		i++;
+	}
 }
