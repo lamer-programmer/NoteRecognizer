@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -150,9 +150,13 @@
     <ClInclude Include="AudioFrame.hpp" />
     <ClInclude Include="AudioInfo.hpp" />
     <ClInclude Include="AudioLoader.hpp" />
+    <ClInclude Include="AudioPreprocessor.hpp" />
     <ClInclude Include="DFT.hpp" />
     <ClInclude Include="Gnuplot.hpp" />
     <ClInclude Include="LinSpace.hpp" />
+    <ClInclude Include="Note.hpp" />
+    <ClInclude Include="NoteGenerator.hpp" />
+    <ClInclude Include="Point.hpp" />
     <ClInclude Include="ProgressBar.hpp" />
     <ClInclude Include="WindowTransforms\GaussWindowTransform.hpp" />
     <ClInclude Include="WindowTransforms\IWindowTransform.hpp" />

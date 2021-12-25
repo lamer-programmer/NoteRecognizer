@@ -11,7 +11,7 @@ namespace NoteRecognizer
 	class Gnuplot
 	{
 	public:
-		// Getter - функция, которая по индексу позвращает пару x-y
+		// Getter - функция, которая по индексу позвращает пару векторов x-y
 		template <typename GetterType>
 		static void CreateGif(
 			GetterType dataGetter,
@@ -64,6 +64,7 @@ do for [j=0:340] {
 
 			for (auto i = 0; i < frameCount; i++)
 			{
+				std::cout << i << std::endl;
 				auto [x, y] = dataGetter(i);
 
 				if (x.size() != y.size())
