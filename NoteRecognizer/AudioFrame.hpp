@@ -60,7 +60,7 @@ namespace NoteRecognizer
 		{
 			std::valarray<float> interval = GetData();
 			WindowTransform<float>().Apply(interval);
-			return Calculate(interval, sampleRate, frequencyBoundary);
+			return CalculateDFT(interval, sampleRate, frequencyBoundary);
 		}
 
 		[[nodiscard]]
@@ -128,7 +128,7 @@ namespace NoteRecognizer
 		}
 
 		[[nodiscard]]
-		const std::valarray<float> & GetData() const
+		std::valarray<float> GetData() const
 		{
 			return arr[std::slice(begin, end - begin, 1)];
 		}
@@ -141,21 +141,20 @@ namespace NoteRecognizer
 		int end;
 
 		[[nodiscard]]
-		static std::pair<std::valarray<float>, std::valarray<float>> Calculate(
+		static std::pair<std::valarray<float>, std::valarray<float>> CalculateDFT(
 			const std::valarray<float> & sound,
 			const size_t sampleRate,
 			const size_t frequencyRange)
 		{
 			auto spectrum = DFT::ComputeForward(sound);
-
-			std::valarray<float> absolute(spectrum.size());
-			for (auto i = 0; i < spectrum.size(); i++)
+			std::valarray<float> absolute(spectrum.size() / 2);
+			for (auto i = 0; i < spectrum.size() / 2; i++)
 			{
 				absolute[i] = std::abs(spectrum[i]);
 			}
 
-			auto temp = static_cast<float>(spectrum.size()) / sampleRate;
-			std::valarray<float> time = LinSpace<float>(0.0f, spectrum.size(), spectrum.size());
+			auto temp = static_cast<float>(absolute.size()) / sampleRate;
+			std::valarray<float> time = LinSpace<float>(0.0f, absolute.size(), absolute.size());
 
 			std::slice slice(0, frequencyRange, 1);
 			std::valarray<float> timePiece = time[slice];
