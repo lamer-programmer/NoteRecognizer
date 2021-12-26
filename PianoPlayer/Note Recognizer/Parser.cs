@@ -1,9 +1,4 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace NoteRecognizer
 {
@@ -14,7 +9,7 @@ namespace NoteRecognizer
             var notes = new List<Note>();
             for (var i = 0; i < lines.Length; i++)
             {
-                var line = lines[i];
+                var line = lines[i].Trim();
                 if (line == "")
                     continue;
                 var parts = line.Split(' ');

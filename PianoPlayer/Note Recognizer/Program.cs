@@ -1,22 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Note_Recognizer
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        static void LaunchExe(string wavPath)
+        {
+            var exePath = DirHelper.GetExePath();
+            Process.Start(exePath, wavPath);
+        }
+
         [STAThread]
-        static void Main(string[] argv)
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PianoForm(argv[0]));
+
+            var startForm = new StartForm();
+            var pathToWav = startForm.Filename;
+
+            LaunchExe(pathToWav);
+
+            var txtFilename = DirHelper.GetTxtPath();
+
+            Application.Run(new PianoForm(txtFilename));
         }
     }
 }

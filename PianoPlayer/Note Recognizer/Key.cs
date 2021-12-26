@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing;
+using Note_Recognizer;
 
 namespace NoteRecognizer
 {
@@ -105,7 +100,8 @@ namespace NoteRecognizer
 
         public void PlaySound()
         {
-            wplayer.URL = @"C:\Users\Пользователь\Desktop\Note Recognizer\piano-mp3\" + frequencySound + ".mp3";
+            var rootDir = DirHelper.GetRootDirPath();
+            wplayer.URL = rootDir + "piano-mp3\\" + frequencySound + ".mp3";
             wplayer.controls.play();
         }
 
