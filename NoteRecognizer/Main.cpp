@@ -66,7 +66,7 @@ int main(int argc, char** argv)
 	auto [timeline, sound, info] = AudioLoader::Load(path);
 
 	NoteGenerator noteGenerator;
-	const float pickBoundary = 0.01f;
+	const float pickBoundary = 0.015f;
 
 	std::ofstream notesFile("Notes.txt");
 

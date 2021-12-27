@@ -101,6 +101,7 @@ namespace NoteRecognizer
         public void PlaySound()
         {
             var rootDir = DirHelper.GetRootDirPath();
+            wplayer.settings.rate = 1;
             wplayer.URL = rootDir + "piano-mp3\\" + frequencySound + ".mp3";
             wplayer.controls.play();
         }
