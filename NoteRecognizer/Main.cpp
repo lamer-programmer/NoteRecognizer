@@ -59,11 +59,11 @@ void WriteNotesToFile(std::ofstream & notesFile, const std::set<Note> & notes)
 	notesFile << std::endl;
 }
 
-int main(char *argv)
+int main(int argc, char** argv)
 {
-	//auto path = GetPath(argc, argv);
-	std::cout << std::endl << argv << std::endl; // << argc << std::endl;
-	auto [timeline, sound, info] = AudioLoader::Load(argv);
+	auto path = GetPath(argc, argv);
+	std::cout << std::endl << path << std::endl << argc << std::endl;
+	auto [timeline, sound, info] = AudioLoader::Load(path);
 
 	NoteGenerator noteGenerator;
 	const float pickBoundary = 0.01f;

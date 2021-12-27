@@ -9,7 +9,7 @@ namespace Note_Recognizer
         static void LaunchExe(string wavPath)
         {
             var exePath = DirHelper.GetExePath();
-            Process.Start(exePath, wavPath);
+            Process.Start(exePath, wavPath)?.WaitForExit();
         }
 
         [STAThread]
