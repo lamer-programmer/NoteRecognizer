@@ -19,15 +19,15 @@ namespace Note_Recognizer
             var path = Directory.GetCurrentDirectory();
             var first = path.IndexOf(folderName) + folderName.Length;
             path = path.Substring(0, first);
-            return path + "\\x64\\Debug\\NoteRecognizer.exe";
+            return path + "\\x64\\Release\\NoteRecognizer.exe";
         }
         public static string GetTxtPath()
         {
             var folderName = "NoteRecognizer";
             var path = Directory.GetCurrentDirectory();
-            var first = path.IndexOf(folderName) + folderName.Length;
-            path = path.Substring(0, first);
-            return path + "\\NoteRecognizer\\Notes.txt";
+            // var first = path.IndexOf(folderName) + folderName.Length;
+            // path = path.Substring(0, first);
+            return path + "\\Notes.txt";
         }
     }
 }
